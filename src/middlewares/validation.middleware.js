@@ -26,11 +26,6 @@ export const isValidObjectId = (value, helper) => {
 };
 
 
-// export const ageValidation =(value,helper)=>{
-//   const currentDate = new Date();
-//   const age = currentDate.getFullYear() - value.getFullYear()
-//   if(age > 18  && currentDate > value) return true
-//   return helper.message(`user must be older than 18 years old`)
-// }
+
 
 export default validation;

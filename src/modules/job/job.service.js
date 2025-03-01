@@ -192,7 +192,7 @@ export const getExcelFile =  async(req,res,next)=>{
     const {date , companyId} = req.params
 
     const startOfDay = new Date(date);
-    startOfDay.setHours(0, 0, 0, 0); // Start of the day
+    startOfDay.setHours(0, 0, 0, 0); 
     const endOfDay = new Date(date);
     endOfDay.setHours(23, 59, 59, 999)
 
