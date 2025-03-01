@@ -9,6 +9,7 @@ import cors from "cors";
 import { createHandler } from "graphql-http/lib/use/express";
 import { schema } from "./app.schema.js";
 import rateLimit from "express-rate-limit";
+import helmet from "helmet";
 
 
 const limiter = rateLimit({
@@ -23,6 +24,7 @@ const limiter = rateLimit({
 
 export const bootStrap = async (app, express) => {
   app.use(cors());
+  app.use(helmet())
   app.use(limiter)
   app.use("/graphql",createHandler({schema , context:(req)=>{
         const {authorization} = req.headers

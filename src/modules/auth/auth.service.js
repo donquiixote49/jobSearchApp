@@ -38,7 +38,7 @@ export const confirmEmailOtp = async (req, res, next) => {
   const checkOtp = user.OTP.find((e) => e.codeType == otpTypes.confirmEmail);
   if (!checkOtp) return next(new Error(`invalid otp type`, { cause: 400 }));
   const match = compareHash({ plainText: otp, hash: checkOtp.code });
-  console.log(match);
+
   
   if (!match) return next(new Error(`in-valid otp`, { cause: 400 }));
   
@@ -54,9 +54,9 @@ export const loginBySystem = async (req, res, next) => {
   const user = await userModel.findOne({ email });
   if (!user)
     return next(new Error(`this email does not exist`, { cause: 404 }));
-    console.log(password);
+
     const compare = compareHash({ plainText: password, hash: user.password });
-    console.log(compare);
+
     
   if (!compare) return next(new Error(`in-valid password `, { cause: 400 }));
   if (!user.isConfirmed)
@@ -196,6 +196,6 @@ corn.schedule('0 */6 * * *', async ()=>{
     { 'OTP.expireIn': { $lt: currentTime } }, 
     { $pull: { OTP: { expireIn: { $lt: currentTime } } } } 
   );
-  console.log(result.modifiedCount);
+
   
 })

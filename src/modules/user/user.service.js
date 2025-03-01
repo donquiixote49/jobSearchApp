@@ -24,7 +24,7 @@ export const updateProfile = async (req, res, next) => {
 
 export const getLoginUser = async (req, res, next) => {
   const user = await userModel.findById(req.user._id)
-  console.log(user.username);
+
   
 
   if (!user) return next(new Error("user not found ", { cause: 404 }));
